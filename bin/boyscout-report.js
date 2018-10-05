@@ -1,10 +1,20 @@
 #!/usr/bin/env node
 
+const path = require('path')
+const program = require('commander')
 const eslint = require('eslint').CLIEngine
-const engine = new eslint({
-    useEslintrc: true
-    // TODO add formatter
-    // TODO check if we can disale all rules but the boyscout ones
-    // TODO list by default, --summary toggle
-})
-engine.executeOnFiles(['.'])
+
+program
+  .description("Runs a report specific to the rules you defined for boyscout")
+  .option('--summary', 'Only output a count, not the list of all files')
+  .parse(process.argv)
+
+if (program.summary) {
+  process.env.BOYSCOUT_SUMMARY = true
+}
+
+const engine = new eslint({ useEslintrc: true })
+const report = engine.executeOnFiles(['.'])
+const formatter = engine.getFormatter(path.join(__dirname, '..', 'lib', 'formatter.js'))
+console.log(formatter(report.results))
+
