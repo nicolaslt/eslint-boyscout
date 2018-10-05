@@ -1,5 +1,5 @@
 {
-  "name": "boyscout",
+  "name": "eslint-boyscout",
   "version": "0.0.1",
   "description": "A set of tools to help keep track of long winded refactoring.",
   "main": "index.js",
@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nicolaslt/boyscout.git"
+    "url": "git+https://github.com/nicolaslt/eslint-boyscout.git"
   },
   "keywords": [
     "eslint",
@@ -24,9 +24,9 @@
   "author": "Anonymous Coward",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/nicolaslt/boyscout/issues"
+    "url": "https://github.com/nicolaslt/eslint-boyscout/issues"
   },
-  "homepage": "https://github.com/nicolaslt/boyscout#readme",
+  "homepage": "https://github.com/nicolaslt/eslint-boyscout#readme",
   "bin": {
     "boyscout": "bin/boyscout.js"
   }
