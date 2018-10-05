@@ -28,6 +28,6 @@
   },
   "homepage": "https://github.com/nicolaslt/boyscout#readme",
   "bin": {
-    "boyscout": "bin/boyscout"
+    "boyscout": "bin/boyscout.js"
   }
 }
