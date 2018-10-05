@@ -1,0 +1,33 @@
+{
+  "name": "boyscout",
+  "version": "0.0.1",
+  "description": "A set of tools to help keep track of long winded refactoring.",
+  "main": "index.js",
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "commander": "^2.18.0",
+    "eslint-plugin-boyscout": "0.0.1",
+    "pluralize": "^7.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nicolaslt/boyscout.git"
+  },
+  "keywords": [
+    "eslint",
+    "boyscout"
+  ],
+  "author": "Anonymous Coward",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nicolaslt/boyscout/issues"
+  },
+  "homepage": "https://github.com/nicolaslt/boyscout#readme",
+  "bin": {
+    "boyscout": "bin/boyscout"
+  }
+}
