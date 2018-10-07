@@ -29,7 +29,7 @@ Technically you can use it to track anything an AST tree visitor will allow you 
 # Usage
 
 1. Make sure to follow the steps in the [eslint plugin](https://github.com/nicolaslt/eslint-plugin-boyscout)
-2. Your refactoring will now be delivered through whatever `eslint` integration you might have in your IDE/CI
+2. Refactoring errors/warning will now be delivered through your favourite IDE/CI `eslint` integration.
 
 # Reporter
 
