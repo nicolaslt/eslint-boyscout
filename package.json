@@ -6,8 +6,7 @@
   "dependencies": {
     "chalk": "^2.4.1",
     "commander": "^2.18.0",
-    "eslint-plugin-boyscout": "^0.1.0",
-    "pluralize": "^7.0.0"
+    "eslint-plugin-boyscout": "^0.1.0"
   },
   "devDependencies": {
     "eslint": "^5.7.0",
