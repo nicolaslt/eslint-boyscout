@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 
-const path = require('path')
-const program = require('commander')
-const eslint = require('eslint').CLIEngine
+const path = require("path")
+const program = require("commander")
+const eslint = require("eslint").CLIEngine
 
 program
   .description("Runs a report specific to the rules you defined for boyscout")
-  .option('--summary', 'Only output a count, not the list of all files')
+  .option("--summary", "Only output a count, not the list of all files")
   .parse(process.argv)
 
 if (program.summary) {
@@ -14,7 +14,8 @@ if (program.summary) {
 }
 
 const engine = new eslint({ useEslintrc: true })
-const report = engine.executeOnFiles(['.'])
-const formatter = engine.getFormatter(path.join(__dirname, '..', 'lib', 'formatter.js'))
+const report = engine.executeOnFiles(["."])
+const formatter = engine.getFormatter(
+  path.join(__dirname, "..", "lib", "formatter.js")
+)
 console.log(formatter(report.results))
-

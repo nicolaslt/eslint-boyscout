@@ -9,9 +9,23 @@
     "eslint-plugin-boyscout": "^0.1.0",
     "pluralize": "^7.0.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "husky": "^1.1.2",
+    "lint-staged": "^7.3.0",
+    "prettier-eslint-cli": "^4.7.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": ["prettier-eslint", "git add"]
+  },
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "format": "prettier-eslint --write \"bin/**/*.js\" \"lib/**/*.js\"",
+    "lint-staged": "lint-staged"
   },
   "repository": {
     "type": "git",
