@@ -2,7 +2,7 @@
 
 const path = require("path")
 const program = require("commander")
-const eslint = require("eslint").CLIEngine
+const { CLIEngine } = require("eslint")
 
 program
   .description("Runs a report specific to the rules you defined for boyscout")
@@ -13,7 +13,7 @@ if (program.summary) {
   process.env.BOYSCOUT_SUMMARY = true
 }
 
-const engine = new eslint({ useEslintrc: true })
+const engine = new CLIEngine({ useEslintrc: true })
 const report = engine.executeOnFiles(["."])
 const formatter = engine.getFormatter(
   path.join(__dirname, "..", "lib", "formatter.js")
