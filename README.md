@@ -1,3 +1,5 @@
+[![Coverage Status](https://coveralls.io/repos/github/nicolaslt/eslint-boyscout/badge.svg?branch=master)](https://coveralls.io/github/nicolaslt/eslint-boyscout?branch=master)
+
 # Boyscout
 
 > Would you mind rewriting this with tool X instead of Y, we're gradually migrating to it

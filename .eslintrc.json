@@ -3,6 +3,9 @@
     "airbnb-base",
     "prettier"
   ],
+  "env": {
+    "mocha": true
+  },
   "parserOptions": {
     "ecmaVersion": 6
   },
