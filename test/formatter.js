@@ -35,7 +35,28 @@ ${chalk.yellow('\ttest.js:1:2')}
 `
     )
   })
+
+  it("supports rules that don't have any description", () => {
+    const result = formatter([ {messages: [ { ruleId: 'boyscout/nodesc-test', line: 1, column: 2 }], filePath: 'test.js'} ])
+    // eslint-disable-next-line no-unused-expressions
+    result.should.be.a('string').that.is.equal(
+`${chalk.bold.underline.white('boyscout/nodesc-test')}
+${chalk.yellow('\ttest.js:1:2')}
+
+`
+    )
+  })
   
+  it("supports rules that don't have any meta", () => {
+    const result = formatter([ {messages: [ { ruleId: 'boyscout/nometa-test', line: 1, column: 2 }], filePath: 'test.js'} ])
+    // eslint-disable-next-line no-unused-expressions
+    result.should.be.a('string').that.is.equal(
+`${chalk.bold.underline.white('boyscout/nometa-test')}
+${chalk.yellow('\ttest.js:1:2')}
+
+`
+    )
+  })
   // TODO test it survives rules that don't define optional meta/docs
 
 })
