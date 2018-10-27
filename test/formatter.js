@@ -72,5 +72,43 @@ ${chalk.yellow("\ttest.js:1:2")}
 `
     )
   })
-  // TODO test it survives rules that don't define optional meta/docs
+
+  describe("summary", () => {
+    before(() => (process.env.BOYSCOUT_SUMMARY = true))
+    after(() => delete process.env.BOYSCOUT_SUMMARY)
+
+    it("should report a count rather than the list of matches", () => {
+      const result = formatter([
+        {
+          messages: [{ ruleId: "boyscout/simple-test", line: 1, column: 2 }],
+          filePath: "test.js"
+        }
+      ])
+      // eslint-disable-next-line no-unused-expressions
+      result.should.be.a("string").that.is.equal(
+        `${chalk.bold.underline.white("boyscout/simple-test")}
+\t${chalk.blue("A test rule")}
+${chalk.yellow("\t1 match.\n\n")}`
+      )
+    })
+
+    it("should support matches plural", () => {
+      const result = formatter([
+        {
+          messages: [{ ruleId: "boyscout/simple-test", line: 1, column: 2 }],
+          filePath: "test.js"
+        },
+        {
+          messages: [{ ruleId: "boyscout/simple-test", line: 1, column: 2 }],
+          filePath: "othertest.js"
+        }
+      ])
+      // eslint-disable-next-line no-unused-expressions
+      result.should.be.a("string").that.is.equal(
+        `${chalk.bold.underline.white("boyscout/simple-test")}
+\t${chalk.blue("A test rule")}
+${chalk.yellow("\t2 matches.\n\n")}`
+      )
+    })
+  })
 })
