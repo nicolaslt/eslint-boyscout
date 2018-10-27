@@ -11,6 +11,7 @@
   },
   "rules": {
     "no-param-reassign": "off",
-    "prefer-template": "off"
+    "prefer-template": "off",
+    "no-restricted-syntax": "off"
   }
 }
