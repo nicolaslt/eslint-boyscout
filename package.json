@@ -21,6 +21,9 @@
     "mocha": "^5.2.0",
     "prettier-eslint-cli": "^4.7.1"
   },
+  "peerDependencies": {
+    "eslint": "^5"
+  },
   "husky": {
     "hooks": {
       "pre-commit": "npm run lint-staged"
