@@ -15,5 +15,5 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
       - run: npm test
-      - run: COVERALLS_SERVICE_NAME=$CIRCLE_PROJECT_REPONAME npm run test-coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+      - run: COVERALLS_SERVICE_NAME=$CIRCLE_PROJECT_REPONAME npm run coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
       - run: npm run lint
