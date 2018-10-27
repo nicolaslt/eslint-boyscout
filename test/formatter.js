@@ -11,4 +11,10 @@ describe('formatter', () => {
     // eslint-disable-next-line no-unused-expressions
     (() => formatter([])).should.not.throw
   })
+
+  it('should return a string', () => {
+    // eslint-disable-next-line no-unused-expressions
+    formatter([]).should.be.a('string').that.is.empty
+  })
+
 })
