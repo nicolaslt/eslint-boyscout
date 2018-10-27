@@ -1,4 +1,4 @@
-[![Coverage Status](https://coveralls.io/repos/github/nicolaslt/eslint-boyscout/badge.svg?branch=master)](https://coveralls.io/github/nicolaslt/eslint-boyscout?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/nicolaslt/eslint-boyscout/badge.svg?branch=master)](https://coveralls.io/github/nicolaslt/eslint-boyscout?branch=master) [![CircleCI](https://circleci.com/gh/nicolaslt/eslint-boyscout.svg?style=svg)](https://circleci.com/gh/nicolaslt/eslint-boyscout)
 
 # Boyscout
 
