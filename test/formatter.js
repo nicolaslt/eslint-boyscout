@@ -1,6 +1,8 @@
 require("chai").should()
 const chalk = require("chalk")
 
+process.env.BOYSCOUT_DIR = `${__dirname}/rules`
+
 const formatter = require("../lib/formatter")
 
 describe("formatter", () => {
