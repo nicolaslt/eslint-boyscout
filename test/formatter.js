@@ -1,11 +1,18 @@
 require("chai").should()
 const chalk = require("chalk")
 
-process.env.BOYSCOUT_DIR = `${__dirname}/rules`
-
 const formatter = require("../lib/formatter")
 
 describe("formatter", () => {
+  describe("defaults", () => {
+    before(() => delete process.env.BOYSCOUT_DIR)
+    it("should default the rules dir location", () => {
+      formatter.should.throw(/ENOENT.*boyscout\/boyscout-rules/)
+    })
+  })
+
+  before(() => (process.env.BOYSCOUT_DIR = `${__dirname}/rules`))
+
   it("is a function", () => {
     formatter.should.be.an("function")
   })
@@ -76,7 +83,10 @@ ${chalk.yellow("\ttest.js:1:2")}
   })
 
   describe("summary", () => {
-    before(() => (process.env.BOYSCOUT_SUMMARY = true))
+    before(() => {
+      process.env.BOYSCOUT_SUMMARY = true
+      process.env.BOYSCOUT_DIR = `${__dirname}/rules`
+    })
     after(() => delete process.env.BOYSCOUT_SUMMARY)
 
     it("should report a count rather than the list of matches", () => {
