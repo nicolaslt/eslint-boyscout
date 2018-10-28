@@ -5,15 +5,16 @@ const formatter = require("../lib/formatter")
 
 describe("formatter", () => {
   describe("defaults", () => {
-    before(() => delete process.env.BOYSCOUT_DIR)
     it("should default the rules dir location", () => {
+      delete process.env.BOYSCOUT_DIR
       formatter.should.throw(/ENOENT.*boyscout\/boyscout-rules/)
     })
   })
 
-  before(() => (process.env.BOYSCOUT_DIR = `${__dirname}/rules`))
+  beforeEach(() => (process.env.BOYSCOUT_DIR = `${__dirname}/rule-simple-test`))
 
   it("is a function", () => {
+    process.env.BOYSCOUT_DIR = `${__dirname}/empty-rules`
     formatter.should.be.an("function")
   })
 
@@ -23,11 +24,11 @@ describe("formatter", () => {
   })
 
   it("should return a string", () => {
-    // eslint-disable-next-line no-unused-expressions
-    formatter([]).should.be.a("string").that.is.empty
+    formatter([]).should.be.a("string")
   })
 
   it("should ignore non boyscout rules", () => {
+    process.env.BOYSCOUT_DIR = `${__dirname}/empty-rules`
     const result = formatter([{ messages: [{ ruleId: "not-a-boyscout" }] }])
     // eslint-disable-next-line no-unused-expressions
     result.should.be.a("string").that.is.empty
@@ -42,7 +43,7 @@ describe("formatter", () => {
     ])
     // eslint-disable-next-line no-unused-expressions
     result.should.be.a("string").that.is.equal(
-      `${chalk.bold.underline.white("boyscout/simple-test")}
+      `${chalk.bold.underline.white("simple-test")}
 \t${chalk.blue("A test rule")}
 ${chalk.yellow("\ttest.js:1:2")}
 
@@ -51,6 +52,7 @@ ${chalk.yellow("\ttest.js:1:2")}
   })
 
   it("supports rules that don't have any description", () => {
+    process.env.BOYSCOUT_DIR = `${__dirname}/rule-nodesc`
     const result = formatter([
       {
         messages: [{ ruleId: "boyscout/nodesc-test", line: 1, column: 2 }],
@@ -59,7 +61,7 @@ ${chalk.yellow("\ttest.js:1:2")}
     ])
     // eslint-disable-next-line no-unused-expressions
     result.should.be.a("string").that.is.equal(
-      `${chalk.bold.underline.white("boyscout/nodesc-test")}
+      `${chalk.bold.underline.white("nodesc-test")}
 ${chalk.yellow("\ttest.js:1:2")}
 
 `
@@ -67,6 +69,7 @@ ${chalk.yellow("\ttest.js:1:2")}
   })
 
   it("supports rules that don't have any meta", () => {
+    process.env.BOYSCOUT_DIR = `${__dirname}/rule-nometa`
     const result = formatter([
       {
         messages: [{ ruleId: "boyscout/nometa-test", line: 1, column: 2 }],
@@ -75,7 +78,7 @@ ${chalk.yellow("\ttest.js:1:2")}
     ])
     // eslint-disable-next-line no-unused-expressions
     result.should.be.a("string").that.is.equal(
-      `${chalk.bold.underline.white("boyscout/nometa-test")}
+      `${chalk.bold.underline.white("nometa-test")}
 ${chalk.yellow("\ttest.js:1:2")}
 
 `
@@ -83,9 +86,9 @@ ${chalk.yellow("\ttest.js:1:2")}
   })
 
   describe("summary", () => {
-    before(() => {
+    beforeEach(() => {
       process.env.BOYSCOUT_SUMMARY = true
-      process.env.BOYSCOUT_DIR = `${__dirname}/rules`
+      process.env.BOYSCOUT_DIR = `${__dirname}/rule-simple-test`
     })
     after(() => delete process.env.BOYSCOUT_SUMMARY)
 
@@ -98,7 +101,7 @@ ${chalk.yellow("\ttest.js:1:2")}
       ])
       // eslint-disable-next-line no-unused-expressions
       result.should.be.a("string").that.is.equal(
-        `${chalk.bold.underline.white("boyscout/simple-test")}
+        `${chalk.bold.underline.white("simple-test")}
 \t${chalk.blue("A test rule")}
 ${chalk.yellow("\t1 match.\n\n")}`
       )
@@ -117,10 +120,20 @@ ${chalk.yellow("\t1 match.\n\n")}`
       ])
       // eslint-disable-next-line no-unused-expressions
       result.should.be.a("string").that.is.equal(
-        `${chalk.bold.underline.white("boyscout/simple-test")}
+        `${chalk.bold.underline.white("simple-test")}
 \t${chalk.blue("A test rule")}
 ${chalk.yellow("\t2 matches.\n\n")}`
       )
+    })
+  })
+
+  describe("finished rules", () => {
+    it("should report on rules that have no match", () => {
+      process.env.BOYSCOUT_DIR = `${__dirname}/rule-nometa`
+      const result = formatter([])
+      // TODO configurable message posibly just acceping  a template so users can provide their own.
+      // TODO allow the message to be part of the rule configuration so that it can differ per rule?
+      result.should.be.a("string").that.matches(/nometa-test/)
     })
   })
 })
