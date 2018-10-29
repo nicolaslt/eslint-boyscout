@@ -41,5 +41,7 @@ Technically you can use it to track anything an AST tree visitor will allow you 
 
 Example summary output with a very simple rule:
 
+A congratulations message will be displayed for rules that don't match any files. You can adjust the default message by providing other ones in your rules `meta.docs.doneMessage` property.
+
 ![Summary reporter screenshot](https://github.com/nicolaslt/eslint-boyscout/raw/master/reporter-summary.png)
 
