@@ -7,7 +7,7 @@ describe("formatter", () => {
   describe("defaults", () => {
     it("should default the rules dir location", () => {
       delete process.env.BOYSCOUT_DIR
-      formatter.should.throw(/ENOENT.*boyscout\/boyscout-rules/)
+      formatter.should.throw(/ENOENT.*\/boyscout-rules/)
     })
   })
 
