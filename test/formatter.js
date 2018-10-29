@@ -137,8 +137,6 @@ ${chalk.yellow("\t2 matches.\n\n")}`
     it("should report on rules that have no match", () => {
       process.env.BOYSCOUT_DIR = `${__dirname}/rule-nometa`
       const result = formatter([])
-      // TODO configurable message posibly just acceping  a template so users can provide their own.
-      // TODO allow the message to be part of the rule configuration so that it can differ per rule?
       result.should.be.a("string").that.is.equal(
         `${chalk.bold.underline.white("nometa-test")}
 ${chalk.green("\tAll done! Time to clean up.\n\n")}`
@@ -148,8 +146,6 @@ ${chalk.green("\tAll done! Time to clean up.\n\n")}`
     it("should support the doneMessage configuration", () => {
       process.env.BOYSCOUT_DIR = `${__dirname}/rule-simple-test`
       const result = formatter([])
-      // TODO configurable message posibly just acceping  a template so users can provide their own.
-      // TODO allow the message to be part of the rule configuration so that it can differ per rule?
       result.should.be.a("string").that.is.equal(
         `${chalk.bold.underline.white("simple-test")}
 ${chalk.green("\tWell done bud.\n\n")}`
