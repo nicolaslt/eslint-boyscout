@@ -20,7 +20,7 @@ describe("formatter", () => {
 
   it("supports empty results", () => {
     // eslint-disable-next-line no-unused-expressions
-    ;(() => formatter([])).should.not.throw
+    ;(() => formatter([])).should.not.throw()
   })
 
   it("should return a string", () => {
@@ -32,6 +32,12 @@ describe("formatter", () => {
     const result = formatter([{ messages: [{ ruleId: "not-a-boyscout" }] }])
     // eslint-disable-next-line no-unused-expressions
     result.should.be.a("string").that.is.empty
+  })
+
+  it("supports rules without ids", () => {
+    // eslint-disable-next-line no-unused-expressions
+    ;(() =>
+      formatter([{ messages: [{ line: 1, column: 2 }] }])).should.not.throw()
   })
 
   it("should report a boyscout rule", () => {
