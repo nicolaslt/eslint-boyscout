@@ -4,13 +4,6 @@ const chalk = require("chalk")
 const formatter = require("../lib/formatter")
 
 describe("formatter", () => {
-  describe("defaults", () => {
-    it("should default the rules dir location", () => {
-      delete process.env.BOYSCOUT_DIR
-      formatter.should.throw(/ENOENT.*\/boyscout-rules/)
-    })
-  })
-
   beforeEach(() => (process.env.BOYSCOUT_DIR = `${__dirname}/rule-simple-test`))
 
   it("is a function", () => {

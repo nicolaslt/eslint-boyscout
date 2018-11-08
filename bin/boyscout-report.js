@@ -6,8 +6,19 @@ const { CLIEngine } = require("eslint")
 
 program
   .description("Runs a report specific to the rules you defined for boyscout")
+  .option(
+    "--rules-dir <directory>",
+    "Required. The path to your boyscout rules directory"
+  )
   .option("--summary", "Only output a count, not the list of all files")
   .parse(process.argv)
+
+if (!program.rulesDir) {
+  program.outputHelp()
+  process.exit(1)
+}
+
+process.env.BOYSCOUT_DIR = program.rulesDir
 
 if (program.summary) {
   process.env.BOYSCOUT_SUMMARY = true

@@ -35,9 +35,9 @@ Technically you can use it to track anything an AST tree visitor will allow you 
 
 # Reporter
 
-`boyscout report`: shows the list of files you still need to refactor, grouped by rule
+`boyscout report --rules-dir a/directory`: shows the list of files you still need to refactor, grouped by rule
 
-`boyscout report --summary`: to only show a count per rule.
+`boyscout report --rules-dir a/directory --summary`: to only show a count per rule.
 
 Example summary output with a very simple rule:
 
