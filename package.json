@@ -4,6 +4,7 @@
   "description": "A set of tools to help keep track of long winded refactoring.",
   "main": "index.js",
   "dependencies": {
+    "@eslint-boyscout/rule1": "file:boyscout-rules/rule1",
     "chalk": "^2.4.1",
     "commander": "^2.18.0",
     "eslint-plugin-boyscout": "^1.0.0",
